@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loginAppProvider/registrationUI.dart';
 
 void main() {
   runApp(MyApp());
