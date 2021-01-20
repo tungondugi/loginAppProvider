@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loginAppProvider/signinUI.dart';
+// import 'package:loginAppProvider/signinUI.dart';
+import 'package:loginAppProvider/signupUI.dart';
 // import 'package:loginAppProvider/registrationUI.dart';
 
 void main() {
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       // home: Registration(),
-      home: SignIn(),
+      // home: SignIn(),
+      home: SignUp(),
     );
   }
 }
