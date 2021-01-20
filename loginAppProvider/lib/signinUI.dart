@@ -18,9 +18,13 @@ class SignIn extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35),
+                borderRadius: BorderRadius.only(
+                  // circular border radius only to toprigh and topleft.
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                ),
                 color: Colors.grey[100],
               ),
               child: Column(
@@ -74,7 +78,7 @@ class SignIn extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       child: Text(
-                        "Submit",
+                        "Log In",
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {},
