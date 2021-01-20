@@ -57,6 +57,7 @@ class SignUp extends StatelessWidget {
                 TextField(
                   /// [Full Name TextField widget]
                   keyboardType: TextInputType.name,
+                  textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
                     labelText: "Full Name",
                     suffixIcon: Icon(Icons.person_pin_outlined),
