@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loginAppProvider/signinUI.dart';
+import 'package:loginAppProvider/signupUI.dart';
 // import 'package:flutter/services.dart';
 
 class Registration extends StatelessWidget {
@@ -7,10 +9,14 @@ class Registration extends StatelessWidget {
     // SystemChrome.setEnabledSystemUIOverlays([]);
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 2,
+            flex: 1,
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -34,7 +40,7 @@ class Registration extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
-                    height: 40,
+                    height: 50,
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -47,14 +53,22 @@ class Registration extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        // Redirecting to Login Form
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignIn(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                   SizedBox(
                     height: 25,
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 50,
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -70,7 +84,15 @@ class Registration extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        // Redirecting to signUp form
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignUp(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],
