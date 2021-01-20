@@ -4,11 +4,17 @@ import 'package:flutter/services.dart';
 class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Sign Up"),
+        centerTitle: true,
+        elevation: 0,
+      ),
       body: ListView(
+        scrollDirection: Axis.vertical,
         children: <Widget>[
           Container(
             /// [Image Container widget]
-            height: 520 / 2,
+            height: 400 / 2,
             decoration: BoxDecoration(
               image: DecorationImage(
                 alignment: Alignment.bottomCenter,
@@ -34,7 +40,7 @@ class SignUp extends StatelessWidget {
               /// [Column Form widget]
               children: <Widget>[
                 SizedBox(
-                  height: 10,
+                  height: 9,
                 ),
                 Text(
                   /// [Intro Text widget]
@@ -58,7 +64,9 @@ class SignUp extends StatelessWidget {
                       borderRadius: BorderRadius.circular(13),
                     ),
                   ),
-                  onChanged: (String value) {},
+                  onChanged: (String value) {
+                    // TODO://Implement some functions here
+                  },
                 ),
                 SizedBox(
                   height: 15,
@@ -73,7 +81,9 @@ class SignUp extends StatelessWidget {
                       borderRadius: BorderRadius.circular(13),
                     ),
                   ),
-                  onChanged: (String value) {},
+                  onChanged: (String value) {
+                    // TODO://Implement some functions here
+                  },
                 ),
                 SizedBox(
                   height: 15,
@@ -88,7 +98,9 @@ class SignUp extends StatelessWidget {
                       borderRadius: BorderRadius.circular(13),
                     ),
                   ),
-                  onChanged: (String value) {},
+                  onChanged: (String value) {
+                    // TODO://Implement some functions here
+                  },
                 ),
                 SizedBox(
                   height: 15,
@@ -100,13 +112,17 @@ class SignUp extends StatelessWidget {
                     labelText: "dd-mm-yyyy",
                     suffixIcon: IconButton(
                       icon: Icon(Icons.date_range_outlined),
-                      onPressed: () {},
+                      onPressed: () {
+                        // TODO://Implement some functions here
+                      },
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(13),
                     ),
                   ),
-                  onChanged: (String value) {},
+                  onChanged: (String value) {
+                    // TODO://Implement some functions here
+                  },
                 ),
                 SizedBox(
                   height: 15,
@@ -124,17 +140,29 @@ class SignUp extends StatelessWidget {
                       borderRadius: BorderRadius.circular(13),
                     ),
                   ),
-                  onChanged: (String value) {},
+                  onChanged: (String value) {
+                    // TODO://Implement some functions here
+                  },
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
                     child: Text("Submit"),
+                    onPressed: () {
+                      // TODO://Implement some functions here
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xff00BFA6),
+                      elevation: 0,
+                      onPrimary: Colors.white,
+                      side: BorderSide(
+                        color: Colors.teal[300],
+                      ),
+                    ),
                   ),
                 ),
               ],
