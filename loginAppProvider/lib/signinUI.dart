@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:loginAppProvider/signupUI.dart';
 
 class SignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      appBar: AppBar(
+        title: Text("Login"),
+        centerTitle: true,
+        elevation: 0,
+      ),
+      body: ListView(
+        scrollDirection: Axis.vertical,
         children: <Widget>[
-          Expanded(
-            /// [Image Widget]
-            flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/image/Login.png"),
-                ),
+          Container(
+            height: 553 / 2,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/image/Login.png"),
+                fit: BoxFit.contain,
               ),
             ),
           ),
@@ -66,7 +69,7 @@ class SignIn extends StatelessWidget {
                     labelText: "Password",
                     suffixIcon: IconButton(
                       icon: Icon(Icons.remove_red_eye_outlined),
-                      onPressed: () {},
+                      onPressed: null,
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(13),
@@ -79,7 +82,9 @@ class SignIn extends StatelessWidget {
                     "Forgot Password?",
                     style: TextStyle(fontSize: 10),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODO://Implement some functions here
+                  },
                 ),
                 SizedBox(
                   height: 10,
@@ -93,7 +98,6 @@ class SignIn extends StatelessWidget {
                       "Log In",
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff00BFA6),
                       elevation: 0,
@@ -102,14 +106,28 @@ class SignIn extends StatelessWidget {
                         color: Colors.teal[300],
                       ),
                     ),
+                    onPressed: () {
+                      // TODO://Implement some functions here
+                    },
                   ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                Text(
+                TextButton(
                   /// [New user? Widget]
-                  "I'm a new user. Sign Up",
+                  child: Text(
+                    "I'm a new user. Sign Up",
+                    textAlign: TextAlign.center,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignUp(),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(
                   height: 20,
