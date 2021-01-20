@@ -50,6 +50,7 @@ class SignIn extends StatelessWidget {
                   /// [Email Address Widget]
                   decoration: InputDecoration(
                     labelText: "Email Address",
+                    suffixIcon: Icon(Icons.email_outlined),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(13),
                     ),
@@ -60,8 +61,13 @@ class SignIn extends StatelessWidget {
                 ),
                 TextField(
                   /// [Password Widget]
+                  obscureText: true,
                   decoration: InputDecoration(
                     labelText: "Password",
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.remove_red_eye_outlined),
+                      onPressed: () {},
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(13),
                     ),
