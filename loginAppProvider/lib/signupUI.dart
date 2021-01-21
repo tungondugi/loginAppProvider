@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:loginAppProvider/signinUI.dart';
 
 class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class SignUp extends StatelessWidget {
         children: <Widget>[
           Container(
             /// [Image Container widget]
-            height: 400 / 2,
+            height: 364 / 2,
             decoration: BoxDecoration(
               image: DecorationImage(
                 alignment: Alignment.bottomCenter,
@@ -40,7 +41,7 @@ class SignUp extends StatelessWidget {
               /// [Column Form widget]
               children: <Widget>[
                 SizedBox(
-                  height: 9,
+                  height: 5,
                 ),
                 Text(
                   /// [Intro Text widget]
@@ -52,7 +53,7 @@ class SignUp extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 36,
+                  height: 20,
                 ),
                 TextField(
                   /// [Full Name TextField widget]
@@ -145,8 +146,22 @@ class SignUp extends StatelessWidget {
                     // TODO://Implement some functions here
                   },
                 ),
-                SizedBox(
-                  height: 10,
+                TextButton(
+                  child: Text(
+                    "Already have an account? Login.",
+                    style: TextStyle(
+                      fontSize: 11,
+                    ),
+                  ),
+                  onPressed: () {
+                    //redirecting to SignIN() page
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignIn(),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(
                   height: 50,
