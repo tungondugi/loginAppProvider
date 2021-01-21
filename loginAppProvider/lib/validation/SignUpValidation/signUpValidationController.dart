@@ -5,7 +5,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:loginAppProvider/validation/signUpValidationModel.dart';
+import 'package:loginAppProvider/validation/signUpValidation/signUpValidationModel.dart';
 
 class SignUpController with ChangeNotifier {
   // These are all private variables.

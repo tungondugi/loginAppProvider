@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loginAppProvider/signinUI.dart';
-import 'package:loginAppProvider/validation/signUpValidationController.dart';
+import 'package:loginAppProvider/validation/SignUpValidation/signUpValidationController.dart';
 import 'package:provider/provider.dart';
 
 class SignUp extends StatelessWidget {
