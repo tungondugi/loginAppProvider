@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -189,6 +190,7 @@ class SignUp extends StatelessWidget {
                       Consumer<SignUpController>(
                         builder: (_, signUpValidator, __) => TextField(
                           /// [Password TextField widget]
+
                           obscureText: signUpValidator.obscurePassword,
                           decoration: InputDecoration(
                             isDense: true,
@@ -225,22 +227,47 @@ class SignUp extends StatelessWidget {
                       ),
 
                       /// [Already have an account? TextButton]
-                      TextButton(
-                        child: Text(
-                          "Already have an account? Login.",
-                          style: TextStyle(
-                            fontSize: 11,
+                      // TextButton(
+                      //   child: Text(
+                      //     "Already have an account? Login.",
+                      //     style: TextStyle(
+                      //       fontSize: 11,
+                      //     ),
+                      //   ),
+                      //   onPressed: () {
+                      //     //redirecting to SignIN() page
+                      //     Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //         builder: (context) => SignIn(),
+                      //       ),
+                      //     );
+                      //   },
+                      // ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          // TODO:// Put text of both the widgets little bit closer.
+                          Text(
+                            "Already have an account?",
+                            style: TextStyle(fontSize: 11),
                           ),
-                        ),
-                        onPressed: () {
-                          //redirecting to SignIN() page
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignIn(),
+                          TextButton(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(fontSize: 11),
                             ),
-                          );
-                        },
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SignIn(),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
                       ),
 
                       SizedBox(
