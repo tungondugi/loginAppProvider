@@ -7,6 +7,9 @@ import 'package:loginAppProvider/validation/SignUpValidation/signUpValidationCon
 import 'package:provider/provider.dart';
 
 class SignUp extends StatelessWidget {
+  final double sizedBoxHeight = 27.2;
+  final double contentPaddingUnit = 16.0;
+  final double borderRadius = 6.0;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -43,14 +46,17 @@ class SignUp extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       // circular border radius only to toprigh and topleft.
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(40),
+                      topLeft: Radius.circular(1500),
+                      topRight: Radius.circular(1500),
                     ),
-                    color: Colors.grey[100],
+                    color: Colors.teal[50],
                   ),
                   child: Column(
                     /// [Column Form widget]
                     children: <Widget>[
+                      SizedBox(
+                        height: 9.0,
+                      ),
                       Text(
                         /// [Intro Text widget]
                         "Create Account",
@@ -61,7 +67,7 @@ class SignUp extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: sizedBoxHeight + 4.5,
                       ),
 
                       /// [Full Name TextField widget]
@@ -70,11 +76,15 @@ class SignUp extends StatelessWidget {
                           keyboardType: TextInputType.name,
                           textCapitalization: TextCapitalization.words,
                           decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(contentPaddingUnit),
                             labelText: "Full Name",
-                            errorText: signUpValidator.fullName.error,
+                            // errorText: signUpValidator.fullName.error,
                             suffixIcon: Icon(Icons.person_pin_outlined),
+                            fillColor: Colors.white,
+                            filled: true,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(borderRadius),
                             ),
                           ),
                           onChanged: (String value) {
@@ -84,7 +94,7 @@ class SignUp extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: sizedBoxHeight,
                       ),
 
                       /// [Email Address TextField widget]
@@ -92,11 +102,15 @@ class SignUp extends StatelessWidget {
                         builder: (_, signUpValidator, __) => TextField(
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(contentPaddingUnit),
                             labelText: "Email Address",
-                            errorText: "",
+                            // errorText: "",
                             suffixIcon: Icon(Icons.email_outlined),
+                            fillColor: Colors.white,
+                            filled: true,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(borderRadius),
                             ),
                           ),
                           onChanged: (String value) {
@@ -105,7 +119,7 @@ class SignUp extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: sizedBoxHeight,
                       ),
 
                       /// [PhoneNo. TextField widget]
@@ -113,11 +127,15 @@ class SignUp extends StatelessWidget {
                         builder: (context, signUpValidator, child) => TextField(
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(contentPaddingUnit),
                             labelText: "Phone No.",
-                            errorText: "",
+                            // errorText: "",
                             suffixIcon: Icon(Icons.phone_enabled_outlined),
+                            fillColor: Colors.white,
+                            filled: true,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(borderRadius),
                             ),
                           ),
                           onChanged: (String value) {
@@ -126,7 +144,7 @@ class SignUp extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: sizedBoxHeight,
                       ),
 
                       /// [DOB TextField widget]
@@ -135,12 +153,16 @@ class SignUp extends StatelessWidget {
                           controller: signUpValidator.controller,
                           keyboardType: TextInputType.datetime,
                           decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(contentPaddingUnit),
+                            fillColor: Colors.white,
+                            filled: true,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(borderRadius),
                             ),
                             hintText: "Enter DOB",
                             labelText: "dd-mm-yyyy",
-                            errorText: signUpValidator.dob.error,
+                            // errorText: signUpValidator.dob.error,
                             suffixIcon: IconButton(
                               icon: Icon(Icons.date_range_outlined),
                               onPressed: () {
@@ -155,21 +177,25 @@ class SignUp extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: sizedBoxHeight,
                       ),
                       Consumer<SignUpController>(
                         builder: (_, signUpValidator, __) => TextField(
                           /// [Password TextField widget]
                           obscureText: true,
                           decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(contentPaddingUnit),
                             labelText: "Password",
-                            errorText: "",
+                            // errorText: "",
                             suffixIcon: IconButton(
                               icon: Icon(Icons.remove_red_eye),
                               onPressed: () {},
                             ),
+                            fillColor: Colors.white,
+                            filled: true,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(borderRadius),
                             ),
                           ),
                           onChanged: (String value) {
@@ -204,7 +230,7 @@ class SignUp extends StatelessWidget {
                           builder: (_, signUpValidator, __) => ElevatedButton(
                             child: Text("Submit"),
                             onPressed: () {
-                              // TODO://Implement some functions here
+                              // Submitting the data to some storage.
                               signUpValidator.submitData();
                             },
                             style: ElevatedButton.styleFrom(
@@ -213,6 +239,10 @@ class SignUp extends StatelessWidget {
                               onPrimary: Colors.white,
                               side: BorderSide(
                                 color: Colors.teal[300],
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(borderRadius),
                               ),
                             ),
                           ),
