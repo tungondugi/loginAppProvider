@@ -5,20 +5,33 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:loginAppProvider/validation/signUpValidationModel.dart';
+import 'package:loginAppProvider/validation/SignUpValidation/signUpValidationModel.dart';
 
 class SignUpController with ChangeNotifier {
   // These are all private variables.
   ValidationItem _fullName = ValidationItem(null, null);
   ValidationItem _dob = ValidationItem(null, null);
+  ValidationItem _email = ValidationItem(null, null);
+  ValidationItem _phNum = ValidationItem(null, null);
+  ValidationItem _password = ValidationItem(null, null);
+  bool _obscurePassword = true;
 
   /// [Getters]
   ValidationItem get fullName => _fullName;
   ValidationItem get dob => _dob;
+  ValidationItem get email => _email;
+  ValidationItem get phoneNum => _phNum;
+  ValidationItem get password => _password;
+  bool get obscurePassword => _obscurePassword;
 
   /// [getter for the submit button]
   bool get isValid {
-    if (_fullName.value != null && _dob != null) {
+    // Checking if every fields are filled and are not null.
+    if (_fullName.value != null &&
+        _dob.value != null &&
+        _email.value != null &&
+        _phNum.value != null &&
+        _password.value != null) {
       return true;
     } else {
       return false;
@@ -34,6 +47,43 @@ class SignUpController with ChangeNotifier {
       _fullName = ValidationItem(null, "Must be atleast 3 characters");
     }
     // notifying all the listners.
+    notifyListeners();
+  }
+
+  /// [For Email Address]
+  void isEmail(String email) {
+    // For validating email address
+    // Returns whether the regular expression has a match in the string [input]
+    bool emailValid = RegExp(
+            // Regular Expression that matches an email address.
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email);
+
+    if (emailValid) {
+      // If true, then set the email address
+      _email = ValidationItem(email, null);
+    } else {
+      // if not true, show error message.
+      _email = ValidationItem(null, "Enter a valid email address");
+    }
+    notifyListeners();
+  }
+
+  /// [For Phone Number Field]
+
+  void isPhoneNum(String phoneNum) {
+    // Regular expression for phone number
+    // ^(?:[+0]9)?[0-9]{10,12}$
+    // ^ Start of string
+    // (?:[+0]9)? Optionally match a + or 0 followed by 9
+    // [0-9]{10,12} Match 10 digits or 12 digits (if country code is entered at start)
+    // $ End of string
+    bool isphone = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(phoneNum);
+    if (isphone) {
+      _phNum = ValidationItem(phoneNum, null);
+    } else {
+      _phNum = ValidationItem(null, "Enter a valid phone number");
+    }
     notifyListeners();
   }
 
@@ -114,10 +164,40 @@ class SignUpController with ChangeNotifier {
     notifyListeners();
   }
 
+  /// [For Password field]
+  void isPassword(String value) {
+    // Regular expression for following conditions:
+    // Minimum 1 Upper case
+    // Minimum 1 lowercase
+    // Minimum 1 Numeric Number
+    // Minimum 1 Special Character
+    // Common Allow Character ( ! @ # $ & * ~ )
+    // REGEX = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'
+    bool validPassword =
+        RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$")
+            .hasMatch(value);
+    if (validPassword) {
+      _password = ValidationItem(value, null);
+    } else {
+      _password = ValidationItem(null, "Enter a valid password");
+    }
+    notifyListeners();
+  }
+
+  /// [For Obscuring password]
+
+  void togglePassword() {
+    // Toggling between true and false to obscure the password(or not).
+    _obscurePassword = !_obscurePassword;
+    notifyListeners();
+  }
+
   /// [getter for the submit button]
+
   void submitData() {
     // This will submit the data to a DB or may be used for any other functionalities.
-    print("FullName: ${_fullName.value}\nDOB: ${_dob.value}");
+    print(
+        "FullName: ${fullName.value}\nPhone no.: ${phoneNum.value}\nDOB: ${dob.value}\nPassword: ${password.value}");
     notifyListeners();
   }
 }

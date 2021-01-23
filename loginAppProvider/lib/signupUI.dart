@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loginAppProvider/signinUI.dart';
-import 'package:loginAppProvider/validation/signUpValidationController.dart';
+import 'package:loginAppProvider/validation/SignUpValidation/signUpValidationController.dart';
 import 'package:provider/provider.dart';
 
 class SignUp extends StatelessWidget {
+  final double _sizedBoxHeight = 27.2;
+  final double _contentPaddingUnit = 16.0;
+  final double _borderRadius = 6.0;
+  final double _widgetContainerRadius = 1500;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -14,208 +18,273 @@ class SignUp extends StatelessWidget {
       ),
       body: ChangeNotifierProvider(
         create: (context) => SignUpController(),
-        child: ListView(
-          scrollDirection: Axis.vertical,
+        child: Stack(
           children: <Widget>[
             Container(
               /// [Image Container widget]
-              height: 364 / 2,
+              height: 400 / 2,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  alignment: Alignment.bottomCenter,
                   image: AssetImage("assets/image/SignUp.png"),
                   fit: BoxFit.contain,
                 ),
               ),
             ),
-            Container(
-              alignment: Alignment.bottomCenter,
-
-              /// [Form Container Widgets]
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  // circular border radius only to toprigh and topleft.
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
+            ListView(
+              scrollDirection: Axis.vertical,
+              children: <Widget>[
+                Container(
+                  height: 300 / 2,
                 ),
-                color: Colors.grey[100],
-              ),
-              child: Column(
-                /// [Column Form widget]
-                children: <Widget>[
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    /// [Intro Text widget]
-                    "Create Account",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                Container(
+                  /// [Form Container Widgets]
 
-                  /// [Full Name TextField widget]
-                  Consumer<SignUpController>(
-                    builder: (context, signUpValidator, child) => TextField(
-                      keyboardType: TextInputType.name,
-                      textCapitalization: TextCapitalization.words,
-                      decoration: InputDecoration(
-                        labelText: "Full Name",
-                        errorText: signUpValidator.fullName.error,
-                        suffixIcon: Icon(Icons.person_pin_outlined),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(13),
+                  alignment: Alignment.bottomCenter,
+                  padding:
+                      EdgeInsets.only(top: 8, bottom: 32, left: 32, right: 32),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      // circular border radius only to toprigh and topleft.
+                      topLeft: Radius.circular(_widgetContainerRadius),
+                      topRight: Radius.circular(_widgetContainerRadius),
+                    ),
+                    color: Colors.teal[50],
+                  ),
+                  child: Column(
+                    /// [Column Form widget]
+                    children: <Widget>[
+                      SizedBox(
+                        height: 9.0,
+                      ),
+                      Text(
+                        /// [Intro Text widget]
+                        "Create Account",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
                         ),
                       ),
-                      onChanged: (String value) {
-                        // TODO://Implement some functions here
-                        signUpValidator.changeFullName(value);
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-
-                  /// [Email Address TextField widget]
-                  Consumer<SignUpController>(
-                    builder: (_, signUpValidator, __) => TextField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        labelText: "Email Address",
-                        errorText: "",
-                        suffixIcon: Icon(Icons.email_outlined),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(13),
-                        ),
+                      SizedBox(
+                        height: _sizedBoxHeight + 4.5,
                       ),
-                      onChanged: (String value) {
-                        // TODO://Implement some functions here
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
 
-                  /// [PhoneNo. TextField widget]
-                  Consumer<SignUpController>(
-                    builder: (context, signUpValidator, child) => TextField(
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: "Phone No.",
-                        errorText: "",
-                        suffixIcon: Icon(Icons.phone_enabled_outlined),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(13),
-                        ),
-                      ),
-                      onChanged: (String value) {
-                        // TODO://Implement some functions here
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-
-                  /// [DOB TextField widget]
-                  Consumer<SignUpController>(
-                    builder: (context, signUpValidator, child) => TextField(
-                      controller: signUpValidator.controller,
-                      keyboardType: TextInputType.datetime,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(13),
-                        ),
-                        hintText: "Enter DOB",
-                        labelText: "dd-mm-yyyy",
-                        errorText: signUpValidator.dob.error,
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.date_range_outlined),
-                          onPressed: () {
-                            signUpValidator.selectDate(context);
+                      /// [Full Name TextField widget]
+                      Consumer<SignUpController>(
+                        builder: (context, signUpValidator, child) => TextField(
+                          keyboardType: TextInputType.name,
+                          textCapitalization: TextCapitalization.words,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(_contentPaddingUnit),
+                            labelText: "Full Name",
+                            // error message text
+                            errorText: signUpValidator.fullName.error,
+                            suffixIcon: Icon(Icons.person_pin_outlined),
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.circular(_borderRadius),
+                            ),
+                          ),
+                          onChanged: (String value) {
+                            signUpValidator.changeFullName(value);
                           },
                         ),
                       ),
-                      onChanged: (String value) => {
-                        signUpValidator.changeDOB(value)
-                        // TODO://Implement some functions here
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Consumer<SignUpController>(
-                    builder: (_, signUpValidator, __) => TextField(
-                      /// [Password TextField widget]
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        errorText: "",
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.remove_red_eye),
-                          onPressed: () {},
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(13),
+                      SizedBox(
+                        height: _sizedBoxHeight,
+                      ),
+
+                      /// [Email Address TextField widget]
+                      Consumer<SignUpController>(
+                        builder: (_, signUpValidator, __) => TextField(
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(_contentPaddingUnit),
+                            labelText: "Email Address",
+                            // error message text
+                            errorText: signUpValidator.email.error,
+                            suffixIcon: Icon(Icons.email_outlined),
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.circular(_borderRadius),
+                            ),
+                          ),
+                          onChanged: (String value) {
+                            signUpValidator.isEmail(value);
+                          },
                         ),
                       ),
-                      onChanged: (String value) {
-                        // TODO://Implement some functions here
-                      },
-                    ),
-                  ),
-
-                  /// [Already have an account? TextButton]
-                  TextButton(
-                    child: Text(
-                      "Already have an account? Login.",
-                      style: TextStyle(
-                        fontSize: 11,
+                      SizedBox(
+                        height: _sizedBoxHeight,
                       ),
-                    ),
-                    onPressed: () {
-                      //redirecting to SignIN() page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignIn(),
-                        ),
-                      );
-                    },
-                  ),
 
-                  SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: Consumer<SignUpController>(
-                      builder: (_, signUpValidator, __) => ElevatedButton(
-                        child: Text("Submit"),
-                        onPressed: () {
-                          // TODO://Implement some functions here
-                          signUpValidator.submitData();
+                      /// [PhoneNo. TextField widget]
+                      Consumer<SignUpController>(
+                        builder: (_, signUpValidator, __) => TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(_contentPaddingUnit),
+                            labelText: "Phone No.",
+                            // error message text
+                            errorText: signUpValidator.phoneNum.error,
+                            suffixIcon: Icon(Icons.phone_enabled_outlined),
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.circular(_borderRadius),
+                            ),
+                          ),
+                          onChanged: (String value) {
+                            signUpValidator.isPhoneNum(value);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: _sizedBoxHeight,
+                      ),
+
+                      /// [DOB TextField widget]
+                      Consumer<SignUpController>(
+                        builder: (_, signUpValidator, __) => TextField(
+                          controller: signUpValidator.controller,
+                          keyboardType: TextInputType.datetime,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(_contentPaddingUnit),
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.circular(_borderRadius),
+                            ),
+                            hintText: "Enter DOB",
+                            labelText: "dd-mm-yyyy",
+                            // error message text
+                            errorText: signUpValidator.dob.error,
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.date_range_outlined),
+                              onPressed: () {
+                                signUpValidator.selectDate(context);
+                              },
+                            ),
+                          ),
+                          onChanged: (String value) => {
+                            signUpValidator.changeDOB(value),
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: _sizedBoxHeight,
+                      ),
+                      Consumer<SignUpController>(
+                        builder: (_, signUpValidator, __) => TextField(
+                          /// [Password TextField widget]
+
+                          obscureText: signUpValidator.obscurePassword,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.all(_contentPaddingUnit),
+                            labelText: "Password",
+                            // error message text
+                            errorText: signUpValidator.password.error,
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                Icons.remove_red_eye,
+
+                                //if the obscurePassword = true, then show Grey Color
+                                // else show some color.
+                                // Enabling and disabling the color of the eye icon.
+                                color: signUpValidator.obscurePassword
+                                    ? Theme.of(context).disabledColor
+                                    : Theme.of(context).primaryColor,
+                              ),
+                              onPressed: () {
+                                signUpValidator.togglePassword();
+                              },
+                            ),
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.circular(_borderRadius),
+                            ),
+                          ),
+                          onChanged: (String value) {
+                            signUpValidator.isPassword(value);
+                          },
+                        ),
+                      ),
+
+                      /// [Already have an account? TextButton]
+
+                      GestureDetector(
+                        // GestureDetector for onTap Callback.
+                        child: TextButton.icon(
+                          // TextButton.icon lets you align both the text horizontally.
+                          icon: Text(
+                            "Already have an account?",
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 10,
+                            ),
+                          ),
+                          label: Text(
+                            "Login",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 10,
+                            ),
+                          ),
+                          onPressed: null,
+                        ),
+                        onTap: () {
+                          // Navigating to Login screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignIn(),
+                            ),
+                          );
                         },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xff00BFA6),
-                          elevation: 0,
-                          onPrimary: Colors.white,
-                          side: BorderSide(
-                            color: Colors.teal[300],
+                      ),
+
+                      SizedBox(
+                        height: 50,
+                        width: double.infinity,
+                        child: Consumer<SignUpController>(
+                          builder: (_, signUpValidator, __) => ElevatedButton(
+                            // a CONFIRM alert dialogue can be implemented here.
+                            // As a parent widget of the Text widget.
+                            child: Text("Submit"),
+                            // if all the fields are filled then the submit button
+                            // will be enabled else it will be disabled.
+                            onPressed: signUpValidator.isValid
+                                ? signUpValidator.submitData
+                                : null,
+                            style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).primaryColor,
+                              elevation: 0,
+                              onPrimary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(_borderRadius),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),
