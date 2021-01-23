@@ -164,9 +164,9 @@ class SignIn extends StatelessWidget {
                                     BorderRadius.circular(_borderRadius),
                               ),
                             ),
-                            onPressed: () {
-                              signInValidator.submitData();
-                            },
+                            onPressed: signInValidator.isValid
+                                ? signInValidator.submitData
+                                : null,
                           ),
                         ),
                       ),
@@ -186,7 +186,7 @@ class SignIn extends StatelessWidget {
                             "SignUp",
                             style: TextStyle(
                               fontSize: 13,
-                              color: Colors.teal,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ),
                           onPressed: null,
