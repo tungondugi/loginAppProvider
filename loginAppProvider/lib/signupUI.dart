@@ -1,6 +1,3 @@
-import 'dart:ffi';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loginAppProvider/signinUI.dart';
@@ -227,47 +224,36 @@ class SignUp extends StatelessWidget {
                       ),
 
                       /// [Already have an account? TextButton]
-                      // TextButton(
-                      //   child: Text(
-                      //     "Already have an account? Login.",
-                      //     style: TextStyle(
-                      //       fontSize: 11,
-                      //     ),
-                      //   ),
-                      //   onPressed: () {
-                      //     //redirecting to SignIN() page
-                      //     Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //         builder: (context) => SignIn(),
-                      //       ),
-                      //     );
-                      //   },
-                      // ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          // TODO:// Put text of both the widgets little bit closer.
-                          Text(
+
+                      GestureDetector(
+                        // GestureDetector for onTap Callback.
+                        child: TextButton.icon(
+                          // TextButton.icon lets you align both the text horizontally.
+                          icon: Text(
                             "Already have an account?",
-                            style: TextStyle(fontSize: 11),
-                          ),
-                          TextButton(
-                            child: Text(
-                              "Login",
-                              style: TextStyle(fontSize: 11),
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 10,
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignIn(),
-                                ),
-                              );
-                            },
                           ),
-                        ],
+                          label: Text(
+                            "Login",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 10,
+                            ),
+                          ),
+                          onPressed: null,
+                        ),
+                        onTap: () {
+                          // Navigating to Login screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignIn(),
+                            ),
+                          );
+                        },
                       ),
 
                       SizedBox(
